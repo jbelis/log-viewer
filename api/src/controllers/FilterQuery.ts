@@ -23,7 +23,6 @@ export function parseFilter(req: Request): LogFilter {
     }
     if (req.query.service) {
         filter.service = req.query.service as string;
-        console.log(filter.service);
     }
     if (req.query.messageContains) {
         filter.messageContains = req.query.messageContains as string;

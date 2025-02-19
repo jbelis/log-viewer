@@ -4,6 +4,7 @@ dist/
 public
 data
 **/.env*
+postgres_data
 
 # IDEs
 .vscode/*

@@ -26,9 +26,7 @@ const corsOptions = {
 async function bootstrap() {
     logger.info('Starting application');
     try {
-        console.log('BEFORE CONNECTION');
         const connection:DataSource = await AppDataSource.initialize();
-        console.log('AFTER CONNECTION');
         logger.info('Database connection established');
 
         //        app.use(auth(config));
