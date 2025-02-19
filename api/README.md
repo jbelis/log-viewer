@@ -38,7 +38,10 @@ Create a .env file in the api directory and set the following variables:
 PORT=3000
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/logviewer
 DB_MIGRATIONS=src/database/migrations/*.ts
+# port used by the ui dev instance, started using npm run dev in the ui directory. 
+# may be different from 5173
 ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
+# secret for express session management
 SESSION_SECRET=<create a random string>
 ```
 

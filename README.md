@@ -56,11 +56,19 @@ Build the Docker image
 docker build -t logviewer .
 ```
 
+Create an .env file with the following variables
+```
+SESSION_SECRET=<a random string for express session management>
+DB_USER="postgres" unless a change in the database in init is made
+DB_PASSWORD="postgres" unless a change in the database in init is made
+DB_URL="postgresql://<DB_USER>:<DB_PASSWORD>@localhost:5432/logviewer"
+```
+
 docker compose can then be used to 
 1. initialize and run both a postgresql database running on port 5432
 2. and the log viewer application on port 3000
 ```bash
-docker compose up -d
+docker compose up -d --env-file ./.env
 ```
 
 Next, point your browser to http://localhost:3000 to view the application. You will 

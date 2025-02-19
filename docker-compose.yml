@@ -2,12 +2,13 @@
 services:
   app:
     image: log-viewer:latest
+    env_file: ".env"
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/logviewer
-      - SESSION_SECRET=g483tJo7dDz5CLvTAq7YJrpQvcSUo2T2
+      - SESSION_SECRET=${SESSION_SECRET}
       - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/logviewer
       - DB_MIGRATIONS=database/migrations/*.js
     volumes:
@@ -16,10 +17,11 @@ services:
       - db
 
   db:
+    env_file: ".env"
     image: postgres:15-alpine
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=logviewer
     ports:
       - "5432:5432"
