@@ -19,7 +19,7 @@ export class AggregationController {
 
             const dimension =
                 (req.query.dimension as AggregationDimension) || AggregationDimension.TIME;
-            const timeRange = (req.query.timeRange as TimeRange) || TimeRange.HOUR;
+            const timeRange = (req.query.timeRange as TimeRange) || TimeRange.DAY;
 
             const results = await this.aggregationService.aggregate(filter, dimension, timeRange);
             res.json(results);

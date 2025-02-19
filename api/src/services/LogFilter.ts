@@ -18,10 +18,12 @@ export function addFilterToQueryBuilder(
     filter: LogFilter,
     dialect: Dialect,
 ) {
-    // exclude logs in the future
-    queryBuilder.andWhere('log.logDate < :endDate', {
-        endDate: filter.endDate || new Date(),
-    });
+    // exclude logs in the future by default
+    if (filter.endDate) {
+        queryBuilder.andWhere('log.logDate < :endDate', {
+            endDate: filter.endDate,
+        });
+    }
 
     if (filter.startDate) {
         logger.info('startDate', { startDate: filter.startDate });

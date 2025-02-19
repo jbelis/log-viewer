@@ -30,6 +30,8 @@ Service and message are truncated to 255 characters (can be changed).
 Assumption: These rules assume that it is better to have partial data than no data at all. 
 This may or not be the right approach depending on the use case.
 
+About logs in the future: The choice for now is to store all logs, event if they are years in the future. It was also chosen to show in-the-future-logs in the UI, for testing purposes.
+
 ## Architecture
 
 The brief says : "The number of logs can be large. The API and database queries should be optimized for performance."
@@ -62,6 +64,8 @@ ui
 - add the ability to filter by date range
 - provide more interesting visualizations, such as aggregations on multiple axes, 
 - hire a UX designer
+- fix login failure not communicated
+- search page (in particular) not responsive
 
 devx
 - use [testcontainers](https://testcontainers.com/) for database access testing (instead of sqlite)

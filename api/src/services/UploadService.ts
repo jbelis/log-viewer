@@ -11,7 +11,6 @@ const UPLOAD_DIR = 'uploads';
 
 export class UploadService {
     constructor(private queueService: QueueService) {
-        // Ensure upload directory exists
         fs.mkdir(UPLOAD_DIR, { recursive: true }).catch((err) => {
             logger.error('Failed to create upload directory', { error: err });
         });
