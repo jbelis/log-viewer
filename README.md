@@ -25,7 +25,7 @@ timestamp, level ar ignored. (_ASSUMED_)
 
 ## Architecture
 
-Todo
+Todo: add a diagram
 
 ## Todos
 
@@ -33,8 +33,9 @@ service
 - use an external authentication service like Auth0
 - use a proper queue system for uploading and processing log files
 - prevent duplicate uploads of the same log file
-- do more preprocessing, including anomaly detection
-- investigate 
+- do more preprocessing to provide more insights, including pre-aggregation, anomaly detection
+- split processing into a separate app which could scale independently from data access
+- investigate other storage options, including a mix object store + a fast data store for recent and aggregated data
 
 ui
 - add the ability to filter by date range
@@ -74,12 +75,7 @@ curl -X POST http://localhost:3000/api/auth/register \
 ### Development
 
 Please refer to instructions specific each component:
-- [server](./api/README.md)
+- [services](./api/README.md)
 - [user interface](./ui/README.md)
 
-### Prerequisites
-
-- Node.js 23 or higher
-- npm or yarn
-- Docker (optional)
 
