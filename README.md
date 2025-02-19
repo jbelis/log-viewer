@@ -48,7 +48,7 @@ devx
 - use a dependency inversion framework
 
 
-## Running (requires docker)
+## Running (requires docker) -- NOT WORKING YET
 
 Build the Docker image
 ```bash

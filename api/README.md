@@ -1,6 +1,7 @@
 # Log Viewer Service
 
-A service and WEB API for uploading, storing, and analyzing log files. For context, please refer to the [README.md](README.md) file in the root of the project.
+A service and WEB API for uploading, storing, and analyzing log files. 
+For context, please refer to the [README.md](README.md) file in the root of the project.
 
 ## Features
 

@@ -12,7 +12,6 @@ services:
       - DB_MIGRATIONS=database/migrations/*.js
     volumes:
       - ./uploads:/app/uploads
-      - ./init-scripts:/docker-entrypoint-initdb.d
     depends_on:
       - db
 
@@ -25,6 +24,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./api/init-scripts:/docker-entrypoint-initdb.d
+      - ./postgres_data:/var/lib/postgresql/data
+
 volumes:
   postgres_data: {} # Empty object means use default Docker volume settings
