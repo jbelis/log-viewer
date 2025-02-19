@@ -11,4 +11,5 @@ export const AppDataSource = new DataSource({
     migrations: [process.env.DB_MIGRATIONS || 'src/database/migrations/*.ts'],
     synchronize: false,
     logging: true,
+    migrationsRun: true,
 });
