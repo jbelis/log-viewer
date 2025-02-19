@@ -77,6 +77,7 @@ function Search() {
 
             <div 
                 id="scrollableDiv" 
+                data-testid="scrollableDiv"
                 style={{ 
                     height: '600px', 
                     overflow: 'auto',

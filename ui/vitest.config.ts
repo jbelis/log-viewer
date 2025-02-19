@@ -6,5 +6,8 @@ export default mergeConfig(viteConfig, defineConfig({
         setupFiles: ['./setup.tests.ts'],
         globals: true,
         environment: 'jsdom',
-    },
+        coverage: {
+            provider: 'istanbul' // or 'v8'
+        },
+    },  
 }))

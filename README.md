@@ -6,8 +6,8 @@ An extremely basic web application for uploading, viewing and analyzing log file
 
 - Upload and parse log files
 - Real-time log viewing and filtering
-- a basic UI built with React and Tailwind CSS
-- Containerized with Docker for easy testing and deployment
+- a basic UI built with Typescript, React and Tailwind CSS
+- Containerized with Docker (in progress) for easy testing and deployment
 
 ### Accepted log file format
 
@@ -15,17 +15,36 @@ The log file must be a text file with one log entry per line.
 with each line containing the following columns in this order:
 1. timestamp (Format: YYYY-MM-DD HH:MM)
 2. service (e.g., auth-service, payment-service)
-3. level (one of INFO, WARNING, ERROR, CRITICAL, DEBUG)  (_ASSUMED_)
+3. level (one of INFO, WARNING, ERROR, CRITICAL, DEBUG)
 4. message (string)
 
-Notes:
-- lines in log files that do not contain 4 columns of have non parsable data for 
-timestamp, level ar ignored. (_ASSUMED_)
-- service and message are truncated to 255 characters. (_ASSUMED_)
+Rules:
+
+Lines in log files are ignored if:
+  - they do not contain 4 columns
+  - they have non parsable data for timestamp,
+  - they have a log level that is not one of INFO, WARNING, ERROR, CRITICAL, DEBUG (assumption based on provided examples)
+
+Service and message are truncated to 255 characters (can be changed).
+
+Assumption: These rules assume that it is better to have partial data than no data at all. 
+This may or not be the right approach depending on the use case.
 
 ## Architecture
 
-Todo: add a diagram
+The brief says : "The number of logs can be large. The API and database queries should be optimized for performance."
+
+This can mean a large total amount of logs as well as large log file. There is also no
+requirement for uploaded loads to be searchable and aggregated in real time. Hence the assumption: It is preferable for log files to be streamed without delay and
+for expensive processing to be done asynchronously. Also, this allows for separating
+the concerns of data access and data processing into separate components independently 
+scaled.
+
+The following diagram shows the components of the application and their interactions
+conceptually. In the current (naive)implementation, however, all services are hosted in a
+single nodejs process.
+
+![Architecture Diagram](./assets/architecture.jpg)
 
 ## Todos
 
@@ -36,6 +55,8 @@ service
 - do more preprocessing to provide more insights, including pre-aggregation, anomaly detection
 - split processing into a separate app which could scale independently from data access
 - investigate other storage options, including a mix object store + a fast data store for recent and aggregated data
+- track processed log files and link log records to files
+- save invalid logs somewhere and notify the uploader when submitted logs contain invalid data
 
 ui
 - add the ability to filter by date range
@@ -43,11 +64,10 @@ ui
 - hire a UX designer
 
 devx
-- figure out why the built app.js throws an error 
-- use dev container for testing (instead of sqlite)
+- use [testcontainers](https://testcontainers.com/) for database access testing (instead of sqlite)
 - create a CI pipeline
-- use a dependency inversion framework
-
+- get TS compilation to work! (it's not working at the moment)
+- increase test coverage
 
 ## Running (requires docker) -- NOT WORKING YET
 

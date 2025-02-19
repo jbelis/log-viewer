@@ -7,8 +7,7 @@ For context, please refer to the [README.md](README.md) file in the root of the 
 ## Prerequisites
 
 - Node.js (tested so far with v22)
-- Docker and Docker Compose to start services
-- npm
+- Docker and Docker Compose to run services
 
 ## Development Setup
 
@@ -42,8 +41,8 @@ Note: you will need to create a test user, as explained in [README.md](README.md
 ### test, lint and build
 
 ```bash
-npm run test     # NOT WORKING YET
-npm run test:coverage  # NOT WORKING YET
+npm run test 
+npm run test:coverage
 npm run lint
 npm run build
 ```

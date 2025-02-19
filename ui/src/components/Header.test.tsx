@@ -6,25 +6,27 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { isAuthenticated } from '../api/AuthContext';
 
 const mockNavigate = vi.fn();
-const mockIsAuthenticated = vi.fn();
+
+vi.mock('../api/AuthContext', () => ({
+  isAuthenticated: vi.fn()
+}));
 
 vi.mock('react-router-dom', () => ({
   ...vi.importActual('react-router-dom'),
   useNavigate: () => mockNavigate,
   Link: ({ children, to }: { children: React.ReactNode, to: string }) => (
     <a href={to}>{children}</a>
-  ),
-  isAuthenticated: () => mockIsAuthenticated
+  )
 }));
 
 describe('Header', () => {
   beforeEach(() => {
     mockNavigate.mockClear();
-    mockIsAuthenticated.mockClear();
+    vi.mocked(isAuthenticated).mockClear();
   });
 
   it('renders without navigation links when not authenticated', () => {
-    console.log('isAuthenticated', isAuthenticated());
+    vi.mocked(isAuthenticated).mockReturnValue(false);
     render(
         <Header />
     );
@@ -35,9 +37,7 @@ describe('Header', () => {
   });
 
   it('renders navigation links and logout button when authenticated', () => {
-    mockIsAuthenticated.mockReturnValue(true);
-
-    console.log('isAuthenticated', isAuthenticated());
+    vi.mocked(isAuthenticated).mockReturnValue(true);
     render(
         <Header />
     );

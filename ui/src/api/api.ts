@@ -15,7 +15,6 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401 && !isRedirecting) {
       isRedirecting = true;
-      console.log('401 intercepted, redirect to login');
       setAuthenticated(false);
       window.location.href = '/login';
     }
