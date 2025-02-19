@@ -1,0 +1,30 @@
+
+services:
+  app:
+    image: log-viewer:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/logviewer
+      - SESSION_SECRET=g483tJo7dDz5CLvTAq7YJrpQvcSUo2T2
+      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/logviewer
+      - DB_MIGRATIONS=database/migrations/*.js
+    volumes:
+      - ./uploads:/app/uploads
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=logviewer
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data: {} # Empty object means use default Docker volume settings

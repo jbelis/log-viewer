@@ -1,0 +1,38 @@
+# Version control
+.git
+.gitignore
+
+# Dependencies
+node_modules
+
+# Build output
+dist
+
+# Environment files
+.env
+.env.*
+
+# Logs
+logs
+*.log
+
+# Development files
+.vscode
+.idea
+*.md
+test
+coverage
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Temporary files
+.DS_Store
+*.tmp
+.tmp
+temp
+
+# Upload directory
+uploads 

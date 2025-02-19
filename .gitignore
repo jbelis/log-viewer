@@ -1,0 +1,37 @@
+uploads/
+node_modules/
+dist/
+public
+data
+**/.env*
+
+# IDEs
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IDE - JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# IDE - Eclipse
+.project
+.classpath
+.settings/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Docker
+.docker/
+docker-compose.override.yml
+.env.docker
+
+# TypeScript
+**/*.tsbuildinfo
